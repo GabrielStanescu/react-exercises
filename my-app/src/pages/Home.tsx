@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Article, { ArticleData } from "../components/Article";
 import Footer from "../components/Footer";
+import Menu from "../components/Menu";
 
 function Home() {
     const [error, setError] = useState([] as any);
@@ -36,12 +37,18 @@ function Home() {
         return <div>Loading...</div>;
     } else {
         return (
-            <main id="main">
-                {
-                    articles.map(article => (<Article key={article.id} article={article}></Article>))
-                }
+            <div className="container">
+                <Menu></Menu>
+                <div className="add__container">
+                    <button type="button" className="add__button" id="add_article"> + Add Article</button>
+                </div>
+                <main id="main">
+                    {
+                        articles.map(article => (<Article key={article.id} article={article}></Article>))
+                    }
+                </main>
                 <Footer></Footer>
-            </main>
+            </div>
         );
     }
 }

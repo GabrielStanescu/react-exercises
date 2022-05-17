@@ -15,7 +15,7 @@ export default function App() {
     <div className="container">
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Home />}>
+          <Route path="/" element={<Home />}>
           </Route>
           <Route path="/details" element={<Details />}>
           </Route>
