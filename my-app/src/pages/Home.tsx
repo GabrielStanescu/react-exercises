@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Article, { ArticleData } from "../components/Article";
+import Footer from "../components/Footer";
 
 function Home() {
     const [error, setError] = useState([] as any);
@@ -33,10 +34,11 @@ function Home() {
         return <div>Loading...</div>;
     } else {
         return (
-            <main>
+            <main id="main">
                 {
                     articles.map(article => (<Article key={article.id} article={article}></Article>))
                 }
+                <Footer></Footer>
             </main>
         );
     }
