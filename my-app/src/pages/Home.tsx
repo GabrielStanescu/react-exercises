@@ -6,6 +6,8 @@ function Home() {
     const [error, setError] = useState([] as any);
     const [isLoaded, setIsLoaded] = useState(false);
     const [articles, setArticles] = useState([] as ArticleData[]);
+    const [startIndex, setStartIndex] = useState(0);
+    const [endIndex, setEndIndex] = useState(2);
 
     // Note: the empty deps array [] means
     // this useEffect will run once
