@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import Article, { ArticleData } from "../components/Article";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
+
+type PageState = {
+    startIndex: number;
+    endIndex: number;
+    articlesDisplayed: number;
+}
 
 function Home() {
     const [error, setError] = useState([] as any);
     const [isLoaded, setIsLoaded] = useState(false);
     const [articles, setArticles] = useState([] as ArticleData[]);
-    const [startIndex, setStartIndex] = useState(0);
-    const [endIndex, setEndIndex] = useState(2);
+    const [page, setPage] = useState<PageState> ({
+        startIndex: 0,
+        endIndex: 2,
+        articlesDisplayed: 3
+    });
 
     // Note: the empty deps array [] means
     // this useEffect will run once
@@ -36,6 +45,9 @@ function Home() {
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else {
+        const articleList = articles
+        .filter((article, index) => index >= page.startIndex && index <= page.endIndex)
+        .map(article => (<Article key={article.id} article={article}></Article>));
         return (
             <div className="container">
                 <Menu></Menu>
@@ -44,7 +56,7 @@ function Home() {
                 </div>
                 <main id="main">
                     {
-                        articles.map(article => (<Article key={article.id} article={article}></Article>))
+                        articleList
                     }
                 </main>
                 <Footer></Footer>
