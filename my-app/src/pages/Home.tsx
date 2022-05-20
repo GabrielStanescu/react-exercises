@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component } from "react";
 import Article, { ArticleData } from "../components/Article";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
+import Add from "../components/Add";
 
 type PageState = {
     startIndex: number;
@@ -51,9 +52,7 @@ function Home() {
         return (
             <div className="container">
                 <Menu></Menu>
-                <div className="add__container">
-                    <button type="button" className="add__button" id="add_article"> + Add Article</button>
-                </div>
+                <Add></Add>
                 <main id="main">
                     {
                         articleList
