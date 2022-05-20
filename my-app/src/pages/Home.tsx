@@ -3,6 +3,7 @@ import Article, { ArticleData } from "../components/Article";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import Add from "../components/Add";
+import Modal from "../components/Modal";
 
 type PageState = {
     startIndex: number;
@@ -17,8 +18,9 @@ function Home() {
     const [page, setPage] = useState<PageState> ({
         startIndex: 0,
         endIndex: 2,
-        articlesDisplayed: 3
+        articlesDisplayed: 3,
     });
+    const [showModal, setShowModal] = useState(false);
 
     // Note: the empty deps array [] means
     // this useEffect will run once
@@ -49,16 +51,20 @@ function Home() {
         const articleList = articles
         .filter((article, index) => index >= page.startIndex && index <= page.endIndex)
         .map(article => (<Article key={article.id} article={article}></Article>));
+        console.log(articleList);
+        console.log(articles);
+        console.log(page.startIndex + " " + page.endIndex);
         return (
             <div className="container">
                 <Menu></Menu>
-                <Add></Add>
+                <Add fun={setShowModal} val={showModal}></Add>
                 <main id="main">
                     {
                         articleList
                     }
                 </main>
-                <Footer></Footer>
+                {showModal === true ? <Modal fun={setShowModal} val={showModal}></Modal> : <></>}
+                <Footer fun={setPage} val ={page} articleCount={articles}></Footer>
             </div>
         );
     }
