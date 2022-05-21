@@ -60,7 +60,7 @@ function Home() {
     } else {
         const articleList = articles
         .filter((article, index) => index >= page.startIndex && index <= page.endIndex)
-        .map(article => (<Article key={article.id} article={article} showModal={setShowModal}></Article>));
+        .map(article => (<Article key={article.id} article={article} showModal={setShowModal} tempArticle={setTempArticle}></Article>));
         console.log(articleList);
         console.log(articles);
         console.log(page.startIndex + " " + page.endIndex);
@@ -73,7 +73,7 @@ function Home() {
                         articleList
                     }
                 </main>
-                {showModal === true ? <Modal setShowModal={setShowModal}></Modal> : <></>}
+                {showModal === true ? <Modal setShowModal={setShowModal} tempArticle={tempArticle}></Modal> : <></>}
                 <Footer fun={setPage} val ={page} articleCount={articles}></Footer>
             </div>
         );

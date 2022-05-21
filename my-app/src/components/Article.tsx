@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction } from "react";
 interface IArticle {
     article: ArticleData;
     showModal: Dispatch<SetStateAction<boolean>>;
+    tempArticle: Dispatch<SetStateAction<ArticleData>>
 }
 
 export interface ArticleData {
@@ -17,7 +18,7 @@ export interface ArticleData {
 }
 
 export default function Article(props: IArticle) {
-    const { article, showModal } = props;
+    const { article, showModal, tempArticle } = props;
     return (
         <article>
             <h1 className="title">{article.title}</h1>
@@ -32,6 +33,16 @@ export default function Article(props: IArticle) {
             <div className="modify__container">
                 <button type="button" className="modify__button edit_article" onClick={() => {
                     showModal(true);
+                    tempArticle({
+                        id: article.id,
+                        title: article.title,
+                        tag: article.tag,
+                        author: article.author,
+                        date: article.date,
+                        imgUrl: article.imgUrl,
+                        saying: article.saying,
+                        content: article.content
+                    });
                 }}>Edit</button>
                 <button type="button" className="modify__button">Delete</button>
             </div>
