@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction } from "react";
 interface IArticle {
     article: ArticleData;
     showModal: Dispatch<SetStateAction<boolean>>;
-    tempArticle: Dispatch<SetStateAction<ArticleData>>
+    tempArticle: Dispatch<SetStateAction<ArticleData>>;
 }
 
 export interface ArticleData {
@@ -23,7 +23,6 @@ export default function Article(props: IArticle) {
     const fetchDelete = () => {
         fetch('http://localhost:4000/articles/' + article.id, {
             method: 'DELETE',
-            
         });
     }
 
@@ -52,7 +51,7 @@ export default function Article(props: IArticle) {
                         content: article.content
                     });
                 }}>Edit</button>
-                <button type="button" className="modify__button">Delete</button>
+                <button type="button" className="modify__button" onClick={() => fetchDelete()}>Delete</button>
             </div>
             <img src={article.imgUrl} alt = "img"></img>
             <div className="content__container">
