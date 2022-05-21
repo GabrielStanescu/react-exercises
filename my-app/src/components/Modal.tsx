@@ -15,6 +15,7 @@ function Modal(props) {
         })
         .then(function() {
             props.setShowModal(false);
+            props.reloadPage();
         })
     }
 

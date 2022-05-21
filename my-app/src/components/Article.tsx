@@ -4,6 +4,7 @@ interface IArticle {
     article: ArticleData;
     showModal: Dispatch<SetStateAction<boolean>>;
     tempArticle: Dispatch<SetStateAction<ArticleData>>;
+    reloadPage: Function;
 }
 
 export interface ArticleData {
@@ -18,11 +19,14 @@ export interface ArticleData {
 }
 
 export default function Article(props: IArticle) {
-    const { article, showModal, tempArticle } = props;
+    const { article, showModal, tempArticle, reloadPage } = props;
 
     const fetchDelete = () => {
         fetch('http://localhost:4000/articles/' + article.id, {
             method: 'DELETE',
+        })
+        .then(function() {
+            reloadPage();
         });
     }
 

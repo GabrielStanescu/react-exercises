@@ -32,25 +32,23 @@ function Home() {
         content: ''
     });
 
-    // Note: the empty deps array [] means
-    // this useEffect will run once
-    // similar to componentDidMount()
-    useEffect(() => {
+    const reloadPage = () => {
         fetch("http://localhost:4000/articles")
-            .then(res => res.json())
-            .then(
-                (result: ArticleData[]) => {
-                    setIsLoaded(true);
-                    setArticles(result);
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-            )
+        .then(res => res.json())
+        .then(
+            (result: ArticleData[]) => {
+                setIsLoaded(true);
+                setArticles(result);
+            },
+            (error) => {
+                setIsLoaded(true);
+                setError(error);
+            }
+        )
+    }
+
+    useEffect(() => {
+        reloadPage();
     }, [])
 
     if (error === true) {
@@ -60,7 +58,7 @@ function Home() {
     } else {
         const articleList = articles
         .filter((article, index) => index >= page.startIndex && index <= page.endIndex)
-        .map(article => (<Article key={article.id} article={article} showModal={setShowModal} tempArticle={setTempArticle}></Article>));
+        .map(article => (<Article key={article.id} article={article} showModal={setShowModal} tempArticle={setTempArticle} reloadPage={reloadPage}></Article>));
         console.log(articleList);
         console.log(articles);
         console.log(page.startIndex + " " + page.endIndex);
@@ -73,7 +71,7 @@ function Home() {
                         articleList
                     }
                 </main>
-                {showModal === true ? <Modal setShowModal={setShowModal} tempArticle={tempArticle} setTempArticle={setTempArticle}></Modal> : <></>}
+                {showModal === true ? <Modal setShowModal={setShowModal} tempArticle={tempArticle} setTempArticle={setTempArticle} reloadPage={reloadPage}></Modal> : <></>}
                 <Footer fun={setPage} val ={page} articleCount={articles}></Footer>
             </div>
         );
