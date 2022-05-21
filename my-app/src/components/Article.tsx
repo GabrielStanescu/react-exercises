@@ -19,6 +19,14 @@ export interface ArticleData {
 
 export default function Article(props: IArticle) {
     const { article, showModal, tempArticle } = props;
+
+    const fetchDelete = () => {
+        fetch('http://localhost:4000/articles/' + article.id, {
+            method: 'DELETE',
+            
+        });
+    }
+
     return (
         <article>
             <h1 className="title">{article.title}</h1>

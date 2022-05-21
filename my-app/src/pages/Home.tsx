@@ -73,7 +73,7 @@ function Home() {
                         articleList
                     }
                 </main>
-                {showModal === true ? <Modal setShowModal={setShowModal} tempArticle={tempArticle}></Modal> : <></>}
+                {showModal === true ? <Modal setShowModal={setShowModal} tempArticle={tempArticle} setTempArticle={setTempArticle}></Modal> : <></>}
                 <Footer fun={setPage} val ={page} articleCount={articles}></Footer>
             </div>
         );
