@@ -21,6 +21,16 @@ function Home() {
         articlesDisplayed: 3,
     });
     const [showModal, setShowModal] = useState(false);
+    const [tempArticle, setTempArticle] = useState({
+        id: 0,
+        title: '',
+        tag: '',
+        author: '',
+        date: '',
+        imgUrl: '',
+        saying: '',
+        content: ''
+    });
 
     // Note: the empty deps array [] means
     // this useEffect will run once
@@ -50,7 +60,7 @@ function Home() {
     } else {
         const articleList = articles
         .filter((article, index) => index >= page.startIndex && index <= page.endIndex)
-        .map(article => (<Article key={article.id} article={article}></Article>));
+        .map(article => (<Article key={article.id} article={article} showModal={setShowModal}></Article>));
         console.log(articleList);
         console.log(articles);
         console.log(page.startIndex + " " + page.endIndex);
@@ -63,7 +73,7 @@ function Home() {
                         articleList
                     }
                 </main>
-                {showModal === true ? <Modal fun={setShowModal} val={showModal}></Modal> : <></>}
+                {showModal === true ? <Modal setShowModal={setShowModal}></Modal> : <></>}
                 <Footer fun={setPage} val ={page} articleCount={articles}></Footer>
             </div>
         );

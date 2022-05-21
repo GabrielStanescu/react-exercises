@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 interface IArticle {
     article: ArticleData;
+    showModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface ArticleData {
@@ -16,7 +17,7 @@ export interface ArticleData {
 }
 
 export default function Article(props: IArticle) {
-    const { article } = props;
+    const { article, showModal } = props;
     return (
         <article>
             <h1 className="title">{article.title}</h1>
@@ -29,7 +30,9 @@ export default function Article(props: IArticle) {
                 <li className="info__item">{article.date}</li>
             </ul>
             <div className="modify__container">
-                <button type="button" className="modify__button edit_article">Edit</button>
+                <button type="button" className="modify__button edit_article" onClick={() => {
+                    showModal(true);
+                }}>Edit</button>
                 <button type="button" className="modify__button">Delete</button>
             </div>
             <img src={article.imgUrl} alt = "img"></img>

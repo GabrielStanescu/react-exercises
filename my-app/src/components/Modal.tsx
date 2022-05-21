@@ -15,7 +15,7 @@ function Modal(props) {
                     <input className="modal__form" id="i6" placeholder="Please enter content" />
                 </div>
                 <div className="modal__buttons">
-                    <button className="add__button" id="cancel" onClick={() => {props.fun(false)}}>Cancel</button>
+                    <button className="add__button" id="cancel" onClick={() => {props.setShowModal(false)}}>Cancel</button>
                     <button className="add__button" id="save">Save</button>
                 </div>
             </div>
