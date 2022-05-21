@@ -270,3 +270,9 @@ p {
   color: var(--grey-color);
   font-family: 'Cardo', sans-serif;
 }
+
+.readmore__container {
+  display: flex;
+  justify-content: center;
+  margin: 140px 0 100px 0;
+}

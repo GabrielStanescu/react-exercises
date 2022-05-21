@@ -25,9 +25,9 @@ export default function Article(props: IArticle) {
         fetch('http://localhost:4000/articles/' + article.id, {
             method: 'DELETE',
         })
-        .then(function() {
-            reloadPage();
-        });
+            .then(function () {
+                reloadPage();
+            });
     }
 
     return (
@@ -57,9 +57,12 @@ export default function Article(props: IArticle) {
                 }}>Edit</button>
                 <button type="button" className="modify__button" onClick={() => fetchDelete()}>Delete</button>
             </div>
-            <img src={article.imgUrl} alt = "img"></img>
+            <img src={article.imgUrl} alt="img"></img>
             <div className="content__container">
                 <p className="content__text">{article.content.substring(0, 1000)}</p>
+            </div>
+            <div className="readmore__container">
+                <button type="button" className="button">Read More</button>
             </div>
         </article>
     );
