@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
+import { useNavigate } from "react-router";
 
 interface IArticle {
     article: ArticleData;
@@ -29,6 +30,8 @@ export default function Article(props: IArticle) {
                 reloadPage();
             });
     }
+
+    let navigate = useNavigate();
 
     return (
         <article>
@@ -62,7 +65,7 @@ export default function Article(props: IArticle) {
                 <p className="content__text">{article.content.substring(0, 1000)}</p>
             </div>
             <div className="readmore__container">
-                <button type="button" className="button">Read More</button>
+                <button type="button" className="button" onClick={() => navigate('/details/' + article.id)}>Read More</button>
             </div>
         </article>
     );
